@@ -1,0 +1,9 @@
+name: interval_response/
+version: 0.1.0
+
+authors:
+  - Julik Tarkhanov <me@julik.nl>
+
+crystal: 0.31.0
+
+license: MIT
