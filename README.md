@@ -1,4 +1,4 @@
-# interval_response/
+# interval_response
 
 TODO: Write a description here
 
@@ -8,8 +8,8 @@ TODO: Write a description here
 
    ```yaml
    dependencies:
-     interval_response/:
-       github: julik/interval_response/
+     interval_response:
+       github: WeTransfer/cr_interval_response
    ```
 
 2. Run `shards install`
@@ -17,7 +17,7 @@ TODO: Write a description here
 ## Usage
 
 ```crystal
-require "interval_response/"
+require "interval_response"
 ```
 
 TODO: Write usage instructions here
