@@ -25,16 +25,27 @@ class IntervalResponse::IOSequence
   end
 
   def intervals_within(offset : UInt64, length : UInt64)
-    first_touched = interval_under(offset)
+    ia = idx_under(offset)
+    ib = idx_under(offset + length)
 
     # The range starts to the right of available range
-    return [] of Interval unless first_touched
+    return [] of Interval unless ia && ib
 
-    last_touched = interval_under(offset + length) || @intervals.last
-    @intervals[first_touched.index..last_touched.index]
+    @intervals[ia..ib]
   end
 
-  private def interval_under(offset) : Interval?
-    @intervals.bsearch { |interval| interval.offset >= offset }
+  private def idx_under(offset)
+    # TODO: use bsearch
+    if offset > @size
+      return @intervals.last.index
+    end
+
+    intv = @intervals.find do |interval|
+      interval.offset <= offset && (interval.offset + interval.size) > offset
+    end
+
+    if intv
+      return intv.index
+    end
   end
 end
